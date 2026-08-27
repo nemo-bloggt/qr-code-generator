@@ -1,15 +1,17 @@
-version: "3.0"
-
 services:
   qr-code-service:
-    build: qr-code-service
-    image: pjanczyk/qr-code-generator_web
+    build:
+      context: ./qr-code-service
+    expose:
+      - "5000"
 
   web:
-    build: web
-    image: pjanczyk/qr-code-generator_qr-code-service
-    ports:
-      - "80:80"
+    build:
+      context: ./web
+    expose:
+      - "8000"
     environment:
-      QR_CODE_GENERATOR_BASE_URL: http://localhost
+      QR_CODE_GENERATOR_BASE_URL: https://qr.clownfish-production.de
       QR_CODE_GENERATOR_QR_CODE_SERVICE_ADDRESS: qr-code-service:5000
+    depends_on:
+      - qr-code-service
