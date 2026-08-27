@@ -9,7 +9,7 @@ services:
     build:
       context: ./web
     expose:
-      - "8000"
+      - "80"
     environment:
       QR_CODE_GENERATOR_BASE_URL: https://qr.clownfish-production.de
       QR_CODE_GENERATOR_QR_CODE_SERVICE_ADDRESS: qr-code-service:5000
